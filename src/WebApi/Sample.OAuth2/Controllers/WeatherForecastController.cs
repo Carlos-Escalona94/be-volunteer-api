@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Sample.Auth.Interfaces;
 
 namespace Sample.OAuth2.Controllers;
 
@@ -12,10 +13,12 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ISecretProvider _secretProvider;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, ISecretProvider secretProvider)
     {
         _logger = logger;
+        _secretProvider = secretProvider;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
